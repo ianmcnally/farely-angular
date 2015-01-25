@@ -8,6 +8,7 @@ connect = require 'gulp-connect'
 htmlmin = require 'gulp-htmlmin'
 mainBowerFiles = require 'main-bower-files'
 rename = require 'gulp-rename'
+replace = require 'gulp-replace'
 sass = require 'gulp-sass'
 templates = require 'gulp-ng-templates'
 uglify = require 'gulp-uglify'
@@ -37,12 +38,17 @@ gulp.task 'coffee', ->
     .pipe clean()
     .pipe gulp.dest 'public/javascript'
 
-gulp.task 'compile', ['bower', 'copy:layout', 'templates', 'coffee', 'style'], ->
+gulp.task 'compile', ['bower', 'copy:layout', 'copy:manifest', 'templates', 'coffee', 'style'], ->
 
 gulp.task 'connect', ->
   connect.server
     root : 'public'
     livereload : true
+
+gulp.task 'copy:manifest', ->
+  gulp.src 'app/cache.manifest'
+    .pipe replace /:revision-date/, new Date().getTime()
+    .pipe gulp.dest 'public/'
 
 gulp.task 'copy:layout', ->
   gulp.src 'app/layout.html'
@@ -70,6 +76,6 @@ gulp.task 'templates', ->
     .pipe gulp.dest 'public/javascript'
 
 gulp.task 'watch', ->
-  gulp.watch ['app/**/*.html'], ['templates', 'copy:layout']
-  gulp.watch ['app/**/*.coffee'], ['coffee']
-  gulp.watch ['app/**/*.scss'], ['style']
+  gulp.watch ['app/**/*.html'], ['templates', 'copy:layout', 'copy:manifest']
+  gulp.watch ['app/**/*.coffee'], ['coffee', 'copy:manifest']
+  gulp.watch ['app/**/*.scss'], ['style', 'copy:manifest']

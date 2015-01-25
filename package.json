@@ -8,7 +8,9 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "gulp-replace": "^0.5.2"
+  },
   "private": true,
   "devDependencies": {
     "coffee-script": "^1.8.0",

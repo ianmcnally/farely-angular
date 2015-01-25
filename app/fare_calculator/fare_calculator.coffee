@@ -38,7 +38,7 @@ angular.module 'app.fareCalculator', ['ui.router']
     for fare in fares by -1
       toAdd = ((fare - balanceLeft) / bonus).toFixed 2
       # value to add must be divisible by 5
-      if !(getChange(toAdd) % 5)
+      if !(getChange(toAdd) % 5) and toAdd > 0
         purchases.push
           amount : toAdd,
           rides : fare / metrocardRates.RIDE_COST
