@@ -38,22 +38,26 @@ gulp.task 'coffee', ->
     .pipe clean()
     .pipe gulp.dest 'public/javascript'
 
-gulp.task 'compile', ['bower', 'copy:layout', 'copy:manifest', 'templates', 'coffee', 'style'], ->
+gulp.task 'compile', ['bower', 'copy:icons', 'copy:layout', 'copy:manifest', 'templates', 'coffee', 'style'], ->
 
 gulp.task 'connect', ->
   connect.server
     root : 'public'
     livereload : true
 
-gulp.task 'copy:manifest', ->
-  gulp.src 'app/cache.manifest'
-    .pipe replace /:revision-date/, new Date().getTime()
+gulp.task 'copy:icons', ->
+  gulp.src 'app/icons/*'
     .pipe gulp.dest 'public/'
 
 gulp.task 'copy:layout', ->
   gulp.src 'app/layout.html'
     .pipe rename 'index.html'
     .pipe htmlmin collapseWhitespace : true
+    .pipe gulp.dest 'public/'
+
+gulp.task 'copy:manifest', ->
+  gulp.src 'app/cache.manifest'
+    .pipe replace /:revision-date/, new Date().getTime()
     .pipe gulp.dest 'public/'
 
 gulp.task 'default', ['compile', 'connect', 'watch'], ->
