@@ -1,0 +1,7 @@
+<input type="number" ng-model="FareCalculatorController.remainingBalance" ng-model-options="{debounce : 250}" ng-change="FareCalculatorController.updatePurchaseAmounts()"/>
+<input type="number" ng-model="FareCalculatorController.purchaseMaximum" ng-model-options="{debounce : 250}"/>
+<ul ng-if="FareCalculatorController.remainingBalance">
+  <li ng-repeat="purchase in FareCalculatorController.purchaseAmounts">
+    Add <span ng-bind="purchase.amount"></span> for <span ng-bind="purchase.rides"></span> rides
+  </li>
+</ul>

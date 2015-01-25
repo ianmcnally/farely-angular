@@ -1,0 +1,24 @@
+{
+  "name": "fareenough",
+  "version": "0.1.0",
+  "description": "Fare enough - Calculate the best metro card amount",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.3.10",
+    "angular-ui-router": "~0.2.11"
+  },
+  "overrides": {
+    "angular": {
+      "main": "angular.min.js"
+    },
+    "angular-ui-router": {
+      "main": "release/angular-ui-router.min.js"
+    },
+    "normalize.css": {
+      "ignore": true
+    }
+  },
+  "resolutions": {
+    "angular": "~1.3.10"
+  }
+}
