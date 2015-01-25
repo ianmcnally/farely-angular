@@ -1,4 +1,5 @@
-# Shelfie
+# Farely
+Calculate the best amount to put on your metrocard, so you don't have wasted change.
 
 ## Setup
 

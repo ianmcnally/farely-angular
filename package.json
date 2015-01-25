@@ -1,7 +1,7 @@
 {
-  "name": "fareenough",
+  "name": "farely",
   "version": "0.1.0",
-  "description": "Fare enough - Calculate the best metro card amount",
+  "description": "Calculate the best metro card amount",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
