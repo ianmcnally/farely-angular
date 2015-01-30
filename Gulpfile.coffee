@@ -32,7 +32,7 @@ gulp.task 'bower', ['bower:install'], ->
     .pipe gulp.dest 'public/stylesheets/'
 
 gulp.task 'coffee', ->
-  gulp.src 'app/**/*.coffee'
+  gulp.src 'src/**/*.coffee'
     .pipe concat 'main.coffee'
     .pipe coffee().on 'error', util.log
     .pipe clean()
@@ -54,24 +54,24 @@ gulp.task 'connect', ->
     livereload : true
 
 gulp.task 'copy:icons', ->
-  gulp.src 'app/icons/*'
+  gulp.src 'src/icons/*'
     .pipe gulp.dest 'public/'
 
 gulp.task 'copy:layout', ->
-  gulp.src 'app/layout.html'
+  gulp.src 'src/layout.html'
     .pipe rename 'index.html'
     .pipe htmlmin collapseWhitespace : true
     .pipe gulp.dest 'public/'
 
 gulp.task 'copy:manifest', ->
-  gulp.src 'app/cache.manifest'
+  gulp.src 'src/cache.manifest'
     .pipe replace /:revision-date/, new Date().getTime()
     .pipe gulp.dest 'public/'
 
 gulp.task 'default', ['compile', 'connect', 'watch'], ->
 
 gulp.task 'style', ->
-  gulp.src 'app/main.scss'
+  gulp.src 'src/main.scss'
     .pipe sass
       errLogToConsole : true
     .pipe autoprefixer
@@ -80,7 +80,7 @@ gulp.task 'style', ->
     .pipe gulp.dest 'public/stylesheets/'
 
 gulp.task 'templates', ->
-  gulp.src 'app/**/*.html'
+  gulp.src 'src/**/*.html'
     .pipe htmlmin collapseWhitespace : true
     .pipe templates
       filename : 'templates.js'
@@ -88,6 +88,6 @@ gulp.task 'templates', ->
     .pipe gulp.dest 'public/javascript'
 
 gulp.task 'watch', ->
-  gulp.watch ['app/**/*.html'], ['templates', 'copy:layout', 'copy:manifest']
-  gulp.watch ['app/**/*.coffee'], ['coffee', 'copy:manifest']
-  gulp.watch ['app/**/*.scss'], ['style', 'copy:manifest']
+  gulp.watch ['src/**/*.html'], ['templates', 'copy:layout', 'copy:manifest']
+  gulp.watch ['src/**/*.coffee'], ['coffee', 'copy:manifest']
+  gulp.watch ['src/**/*.scss'], ['style', 'copy:manifest']
