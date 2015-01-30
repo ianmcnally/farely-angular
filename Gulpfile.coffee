@@ -40,6 +40,14 @@ gulp.task 'coffee', ->
 
 gulp.task 'compile', ['bower', 'copy:icons', 'copy:layout', 'copy:manifest', 'templates', 'coffee', 'style'], ->
 
+gulp.task 'compile:prod', ['compile'], ->
+  gulp.src 'public/javascript/main.js'
+    .pipe uglify
+      beautify : false
+      compress : true
+      mangle : true
+    .pipe gulp.dest 'public/javascript'
+
 gulp.task 'connect', ->
   connect.server
     root : 'public'
