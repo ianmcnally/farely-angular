@@ -6,6 +6,7 @@ coffee = require 'gulp-coffee'
 concat = require 'gulp-concat'
 connect = require 'gulp-connect'
 htmlmin = require 'gulp-htmlmin'
+karma = require('karma').server
 mainBowerFiles = require 'main-bower-files'
 rename = require 'gulp-rename'
 replace = require 'gulp-replace'
@@ -86,6 +87,18 @@ gulp.task 'templates', ->
       filename : 'templates.js'
       module : 'app.templates'
     .pipe gulp.dest 'public/javascript'
+
+gulp.task 'test', (done) ->
+  karma.start
+    configFile : "#{__dirname}/karma.conf.coffee"
+  , done
+
+gulp.task 'test:browser', (done) ->
+  karma.start
+    configFile : "#{__dirname}/karma.conf.coffee"
+    browsers : ['Chrome']
+    singleRun : false
+  , done
 
 gulp.task 'watch', ->
   gulp.watch ['src/**/*.html'], ['templates', 'copy:layout', 'copy:manifest']

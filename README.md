@@ -9,3 +9,8 @@ Calculate the best amount to put on your metrocard, so you don't have wasted cha
 ## Develop
 
 1. `gulp`
+
+## Test
+
+1. `gulp test` - Run unit tests headless in PhantomJS (good for CI)
+2. `gulp test:browser` - Run unit tests in Chrome

@@ -17,10 +17,14 @@ angular.module 'app.fareCalculator', ['ui.router']
 
 ]
 
-.service 'fareMaximizer',
+.service 'fares',
 ['metrocardRates', (metrocardRates) ->
 
   bonus = metrocardRates.BONUS_PERCENT / 100 + 1.0
+
+  # polyfill Math.trunc
+  Math.trunc ||= (value) ->
+    if value < 0 then Math.ceil(value) else Math.floor(value)
 
   # get change as whole number i.e., 0.25 -> 25
   getChange = (cost) ->
@@ -48,11 +52,11 @@ angular.module 'app.fareCalculator', ['ui.router']
 .controller 'FareCalculator',
 class FareCalculator
 
-  @$inject : ['fareMaximizer']
+  @$inject : ['fares']
 
   purchaseMaximum : 40
 
-  constructor : (@fareMaximizer) ->
+  constructor : (@fares) ->
 
   updatePurchaseAmounts : ->
-    @purchaseAmounts = @fareMaximizer.amountsToAdd Number(@remainingBalance), Number(@purchaseMaximum)
+    @purchaseAmounts = @fares.amountsToAdd Number(@remainingBalance), Number(@purchaseMaximum)
