@@ -33,7 +33,7 @@ gulp.task 'bower', ['bower:install'], ->
     .pipe gulp.dest 'public/stylesheets/'
 
 gulp.task 'coffee', ->
-  gulp.src 'src/**/*.coffee'
+  gulp.src ['src/**/*.coffee', '!src/**/*.spec.coffee']
     .pipe concat 'main.coffee'
     .pipe coffee().on 'error', util.log
     .pipe clean()
