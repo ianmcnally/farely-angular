@@ -21,10 +21,15 @@ describe 'FareCalculator', ->
           .toEqual '38.10'
 
       it 'takes a maximum-to-add value', ->
-        amounts = fares.amountsToAdd 10.01, 20
+        amounts = fares.amountsToAdd 10, 20
         expect amounts?.length
           .toEqual 1
         expect amounts[0]?.rides
-          .toEqual 6
+          .toEqual 9
         expect amounts[0]?.amount
-          .toEqual '4.75'
+          .toEqual '11.90'
+
+      it 'caps the max-to-add at TRANSACTION_MAX', inject (metrocardRates) ->
+        amounts = fares.amountsToAdd 10, metrocardRates.TRANSACTION_MAX + 15
+        expect Number(amounts[0]?.amount) <= metrocardRates.TRANSACTION_MAX
+          .toBe true
