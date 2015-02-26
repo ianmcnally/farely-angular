@@ -1,6 +1,8 @@
 # Farely
 Calculate the best amount to put on your metrocard, so you don't have wasted change.
 
+Deprecated: Farely has been ported to react, [here](https://github.com/imcnally/farely-react).
+
 ## Setup
 
 1. `npm install -g gulp`
