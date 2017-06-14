@@ -1,4 +1,6 @@
 # Farely
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/ianmcnally/farely-angular.svg)](https://greenkeeper.io/)
 Calculate the best amount to put on your metrocard, so you don't have wasted change.
 
 Deprecated: Farely has been ported to react, [here](https://github.com/imcnally/farely-react).
